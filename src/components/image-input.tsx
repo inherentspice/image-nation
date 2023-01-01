@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-export default function ImageCreation() {
+interface ImageCreationProps {
+  createImage: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, imageDescription: String, imageSize: String) => Promise<String>;
+}
+
+export default function ImageCreation({createImage}: ImageCreationProps) {
   let [imageDescription, setImageDescription] = useState("");
   let [imageSize, setImageSize] = useState("")
   return (
@@ -16,12 +20,11 @@ export default function ImageCreation() {
         value={imageSize}
       >
         <option value="">Choose an image size</option>
-        <option value="1920x1080">Background Image</option>
-        <option value="1200x630">Blog Image</option>
-        <option value="250x100">Logo Rectangle</option>
-        <option value="100x100">Logo Square</option>
+        <option value="1024x1024">Background Image</option>
+        <option value="512x512">Blog Image</option>
+        <option value="256x256">Logo Square</option>
       </select>
-      <button onClick={()=> {}}>
+      <button onClick={(event)=> createImage(event, imageDescription, imageSize)}>
         Generate Image
       </button>
     </div>
