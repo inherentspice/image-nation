@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 interface ImageCreationProps {
-  createImage: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, imageDescription: String, imageSize: String) => Promise<String>;
+  createImage: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, imageDescription: string, imageSize: string) => Promise<void>;
 }
 
 export default function ImageCreation({createImage}: ImageCreationProps) {
