@@ -22,11 +22,11 @@ function App() {
   }
 
   return (
-    <>
+    <div className="App">
       <Header />
       <ImageInput createImage={createImage}/>
       {imageURL && <ImageDisplay imageURL={imageURL}/>}
-    </>
+    </div>
   );
 }
 
