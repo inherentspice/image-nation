@@ -46,20 +46,3 @@ img {
   border-radius: 4px;
   margin: 16px 0;
 }
-
-@media (min-width: 768px) {
-  .App {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 1rem;
-    max-width: fit-content;
-  }
-
-  .image-creation-cont {
-    grid-column: 1 / span 1;
-  }
-
-  img {
-    grid-column: 2 / span 1;
-  }
-}
