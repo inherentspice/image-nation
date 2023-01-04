@@ -1,5 +1,7 @@
 export default function Header() {
   return (
-    <h1>Image-Nation</h1>
+    <div className="header-cont">
+      <h1>Image-Nation</h1>
+    </div>
   )
 }
