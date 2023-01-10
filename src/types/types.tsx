@@ -7,3 +7,7 @@ export interface ImageData {
 export interface ImageDisplayProps {
   imageURL: string,
 }
+
+export interface ErrorMessageProps {
+  message: string,
+}
