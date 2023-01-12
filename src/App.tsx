@@ -62,6 +62,7 @@ function App() {
   // Submit user login info to the database for authentication
   function handleUserLogin(event: React.FormEvent<HTMLFormElement>, username: string, password: string): void {
     event.preventDefault();
+    // remove 'user' from userObject
     const userObject: UserDataPassed = {user: {
       username,
       password,
@@ -72,7 +73,7 @@ function App() {
         setUser(response.data);
       })
       .catch(error => {
-        setError(error.response.data);
+        setError(error.response.data.error);
       })
   }
 
@@ -94,9 +95,25 @@ function App() {
       })
   }
 
+  // navigate to sign up page
+  function handleSignUpClick(): void {
+    setSignUp(!signUp);
+  }
+
+  // log user out of the app
+  function logOut(): void {
+    UserService.logOut()
+      .then(response => {
+        setUser(false);
+      })
+      .catch(error => {
+        setError(error.response.message);
+      })
+  }
+
   return (
     <div className="App">
-      <Header loggedIn={user}  logOut={() => {}} navigate={() => {}}/>
+      <Header loggedIn={user}  logOut={logOut} navigate={handleSignUpClick}/>
       {!user && !signUp && <LogIn handleUserLogIn={handleUserLogin}/>}
       {!user && signUp && <SignUp handleUserSignUp={handleUserSignUp}/>}
       {user && <ImageInput createImage={createImage}/>}
