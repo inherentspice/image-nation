@@ -11,3 +11,12 @@ export interface ImageDisplayProps {
 export interface ErrorMessageProps {
   message: string,
 }
+
+export interface UserData {
+  user: {
+    username: string,
+    password: string,
+    dailyUse: Number,
+    lastLogin: Date
+  }
+}
