@@ -1,7 +1,6 @@
 import { HeaderProps } from "../types/types"
 
 export default function Header({loggedIn, logOut, navigate}: HeaderProps) {
-  console.log(loggedIn);
   return (
     <div className="header-cont">
       <h1>Image-Nation</h1>

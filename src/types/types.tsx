@@ -39,6 +39,10 @@ export interface SignUpProps {
   handleUserSignUp: (event: React.FormEvent<HTMLFormElement>, username: string, password: string) => void;
 }
 
+export interface LogOutData {
+  message: string
+}
+
 export interface HeaderProps {
   loggedIn: UserData | Boolean,
   logOut: () => void,
