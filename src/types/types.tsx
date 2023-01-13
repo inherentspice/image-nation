@@ -13,13 +13,11 @@ export interface ErrorMessageProps {
 }
 
 export interface UserDataPassed {
-  user: {
-    username: string,
-    password: string,
-    dailyUse?: Number,
-    lastLogin?: Date,
-    id?: string,
-  }
+  username: string,
+  password: string,
+  dailyUse?: Number,
+  lastLogin?: Date,
+  id?: string,
 }
 
 export interface UserData {

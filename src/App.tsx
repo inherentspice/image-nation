@@ -63,10 +63,10 @@ function App() {
   function handleUserLogin(event: React.FormEvent<HTMLFormElement>, username: string, password: string): void {
     event.preventDefault();
     // remove 'user' from userObject
-    const userObject: UserDataPassed = {user: {
+    const userObject: UserDataPassed = {
       username,
       password,
-    }};
+    };
 
     UserService.logIn(userObject)
       .then(response => {
@@ -80,10 +80,9 @@ function App() {
   // Submit the newly created user to the database
   function handleUserSignUp(event: React.FormEvent<HTMLFormElement>, username: string, password: string): void {
     event.preventDefault();
-    const userObject: UserDataPassed = {user: {
+    const userObject: UserDataPassed = {
         username,
         password
-      }
     };
     UserService.signUp(userObject)
       .then(response => {
