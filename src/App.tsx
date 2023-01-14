@@ -16,7 +16,7 @@ function App() {
   const [imageURL, setImageURL] = React.useState<string>("")
   const [loading, setLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string>("")
-  const [user, setUser] = React.useState<UserData | boolean>(false);
+  const [user, setUser] = React.useState<UserData>({user: {username: "", dailyUse: -1, id: "", lastLogin: ""}});
   const [signUp, setSignUp] = React.useState<boolean>(false);
 
 
@@ -35,6 +35,10 @@ function App() {
 
   async function createImage(event: React.MouseEvent<HTMLButtonElement, MouseEvent>, imageDescription: string, imageSize: string): Promise<void> {
     event.preventDefault();
+    if (user.user.dailyUse >= 15) {
+      setError("You have exceeded the daily limit of uses. Wait until tomorrow to try again.");
+      return
+    }
     if (imageDescription==="") {
       setError("No image description!");
       return
@@ -56,7 +60,14 @@ function App() {
       .catch(error => {
         setError(error.response.data.error);
         setLoading(false);
-      });
+      })
+    UserService.updateUser(user.user.id)
+      .then(updatedUser => {
+        setUser(updatedUser.data)
+      })
+      .catch(error => {
+        setError(error.response.data.error);
+      })
   }
 
   // Submit user login info to the database for authentication
@@ -103,19 +114,21 @@ function App() {
   function logOut(): void {
     UserService.logOut()
       .then(response => {
-        setUser(false);
+        setUser({user: {username: "", dailyUse: -1, id: "", lastLogin: ""}});
       })
       .catch(error => {
         setError(error.response.message);
       })
   }
 
+  console.log(user.user.dailyUse);
+
   return (
     <div className="App">
       <Header loggedIn={user}  logOut={logOut} navigate={handleSignUpClick}/>
-      {!user && !signUp && <LogIn handleUserLogIn={handleUserLogin}/>}
-      {!user && signUp && <SignUp handleUserSignUp={handleUserSignUp}/>}
-      {user && <ImageInput createImage={createImage}/>}
+      {user.user.dailyUse < 0 && !signUp && <LogIn handleUserLogIn={handleUserLogin}/>}
+      {user.user.dailyUse < 0 && signUp && <SignUp handleUserSignUp={handleUserSignUp}/>}
+      {user.user.dailyUse >= 0 && <ImageInput createImage={createImage}/>}
       {error && <ErrorMessage message={error}/>};
       {loading && <Loading />}
       {imageURL && <ImageDisplay imageURL={imageURL}/>}

@@ -19,11 +19,16 @@ const signUp = (userObject: UserDataPassed): Promise<AxiosResponse<UserData>> =>
 const logOut = (): Promise<AxiosResponse<LogOutData>> => {
   return axios.get<LogOutData>("/log-out");
 }
+
+const updateUser = (id: string): Promise<AxiosResponse<UserData>> => {
+  return axios.put<UserData>(`${baseUrl}/${id}`)
+}
 const UserService = {
   checkAuthentication,
   logIn,
   signUp,
   logOut,
+  updateUser,
 }
 
 export default UserService;
