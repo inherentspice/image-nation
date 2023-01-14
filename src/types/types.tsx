@@ -16,7 +16,7 @@ export interface UserDataPassed {
   username: string,
   password: string,
   dailyUse?: Number,
-  lastLogin?: Date,
+  lastLogin?: string,
   id?: string,
 }
 
@@ -24,7 +24,7 @@ export interface UserData {
   user: {
     username: string,
     dailyUse: Number,
-    lastLogin: Date,
+    lastLogin: string,
     id: string,
   }
 }
