@@ -33,9 +33,14 @@ function App() {
       })
   }, [])
 
+  function dateConversion(): string{
+    return new Date().toLocaleString().split(',')[0]
+  }
+
   async function createImage(event: React.MouseEvent<HTMLButtonElement, MouseEvent>, imageDescription: string, imageSize: string): Promise<void> {
     event.preventDefault();
-    if (user.user.dailyUse >= 15) {
+    const dateNow = dateConversion()
+    if (user.user.dailyUse >= 15 && dateNow === user.user.lastLogin) {
       setError("You have exceeded the daily limit of uses. Wait until tomorrow to try again.");
       return
     }
