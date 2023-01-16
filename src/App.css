@@ -144,6 +144,9 @@ img {
   margin: 5rem;
 }
 
+.pages-color-cont {
+  display: flex;
+}
 .pages-color-cont>button {
   font-size: 18px;
   font-weight: bold;
