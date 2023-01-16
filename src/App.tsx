@@ -126,8 +126,6 @@ function App() {
       })
   }
 
-  console.log(user.user.dailyUse);
-
   return (
     <div className="App">
       <Header loggedIn={user}  logOut={logOut} navigate={handleSignUpClick}/>
